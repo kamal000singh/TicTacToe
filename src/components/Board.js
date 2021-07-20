@@ -1,23 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Square from './Square.js';
-const Board = () => {
-  const [board, setBoard] = useState(Array(9).fill(null));
-  const [isNext, setIsNext] = useState(false);
-  const handleClick = position => {
-    if (board[position]) {
-      return;
-    }
-    setBoard(prev => {
-      return prev.map((square, pos) => {
-        if (pos === position) {
-          return isNext ? 'X' : 'O';
-        } else {
-          return square;
-        }
-      });
-    });
-    setIsNext(prev => !prev);
-  };
+const Board = ({ board, handleClick }) => {
   const renderEvent = position => {
     return (
       <Square
