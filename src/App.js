@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { calculateWinner } from './components/Helper';
-import './css/root.scss';
 import Board from './components/Board.js';
+import History from './components/History';
+import './css/root.scss';
 const App = () => {
   const [history, setHistory] = useState([
     { board: Array(9).fill(null), inXNext: true },
@@ -28,11 +29,15 @@ const App = () => {
     });
     setCurrentMove(prev => prev + 1);
   };
+  const moveTo = move => {
+    setCurrentMove(move);
+  };
   return (
     <div className="app">
       <h1>TIC TAC TOE</h1>
       <h2>{message}</h2>
       <Board board={current.board} handleClick={handleClick} />
+      <History history={history} moveTo={moveTo} currentMove={currentMove} />
     </div>
   );
 };
